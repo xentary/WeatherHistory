@@ -4,14 +4,7 @@ import simplejson
 import urllib
 import urllib2
 import xml.sax
-
-class WeatherImportHandler(xml.sax.ContentHandler):
-    temperature = None
-    def startElement(self, name, attrs):
-        if self.temperature is not None:         # Wir wollen nur das erste Element
-            return
-        if name == "temperature":
-            self.temperature = attrs['value']
+from WeatherImportHandler import WeatherImportHandler
 
 address = urllib.urlencode({"q": "51427, Bergisch Gladbach, Germany"})
 url = "http://nominatim.openstreetmap.org/search.php?%s&format=json&addressdetails=0" % address
